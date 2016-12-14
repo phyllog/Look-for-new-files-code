@@ -21,9 +21,9 @@ library("RDCOMClient",character.only=TRUE,quietly=TRUE,verbose=FALSE)
 # I mapped "\\dcnsbiona01b\EDC_V1_SHR2\Shared\DATA_WCTS_ARP_SABS" to Z:\
 # R can't seem to have a network drive as working directory unless
 # it's got a drive letter
-#setwd("Z:")
+setwd("Z:")
   
-setwd("C:/Temp") # Change as necessary
+#setwd("C:/Temp") # Change as necessary
 #getwd()
 
 # Get username and create an e-mail address
