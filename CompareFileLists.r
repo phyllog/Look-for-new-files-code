@@ -26,6 +26,10 @@ library("RDCOMClient",character.only=TRUE,quietly=TRUE,verbose=FALSE)
 # R can't seem to have a network drive as working directory unless
 # it's got a drive letter
 
+
+# Check to see whether Outlook is open and if it is
+# Quit
+
 #setwd("Z:")
 setwd("C:/Temp") # Change as necessary
 #getwd()
