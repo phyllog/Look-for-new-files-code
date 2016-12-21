@@ -24,7 +24,7 @@ library("RDCOMClient",character.only=TRUE,quietly=TRUE,verbose=FALSE)
 # Set the working directory
 # I mapped "\\dcnsbiona01b\EDC_V1_SHR2\Shared\DATA_WCTS_ARP_SABS" to Z:\
 # R can't seem to have a network drive as working directory unless
-# it's got a drive letter
+# it's got a drive letternnn 
 
 
 # Check to see whether Outlook is open and if it is
