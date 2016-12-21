@@ -7,9 +7,13 @@
 
 # function to check if a package is installed
 is_installed <- function(mypkg) is.element(mypkg, installed.packages()[,1]) 
+#----
 
 # The "RDCOMClient" is needed for sending e-mail
-# Check to see that it's installed and if not, install it
+# Check to see that it's installed and if not, install it.
+
+# However, the RDCOMClient package isn't at the cmu repository
+# and so it has to be loaded from the menu
 
 if(!is_installed("RDCOMClient"))  
 {  
@@ -21,9 +25,9 @@ library("RDCOMClient",character.only=TRUE,quietly=TRUE,verbose=FALSE)
 # I mapped "\\dcnsbiona01b\EDC_V1_SHR2\Shared\DATA_WCTS_ARP_SABS" to Z:\
 # R can't seem to have a network drive as working directory unless
 # it's got a drive letter
-setwd("Z:")
-  
-#setwd("C:/Temp") # Change as necessary
+
+#setwd("Z:")
+setwd("C:/Temp") # Change as necessary
 #getwd()
 
 # Get username and create an e-mail address
@@ -50,6 +54,8 @@ fileold <- "dirold.txt"
 filenew <- "dirnew.txt"
 fileall <- "dirfull.txt"
 
+
+
 #If the original directory listing doesn't exist, create it
 if (!file.exists(fileold)) {
   system("cmd.exe /c dir /b/s > dirold.txt")
@@ -62,10 +68,17 @@ if (!file.exists(fileall)) {
 # Create a new file listing (bare format, check all sub-directories)
 system("cmd.exe /c dir /b/s > dirnew.txt")
 
+# The mail function is working even when Outlook isn't running.  However, it is
+# possible to test if Outlook is running and start it if it isn't (see tasklist command below)
 
+# start Outlook if it isn't running
+#system("cmd.exe /c tasklist /FI \"IMAGENAME eq outlook.exe\" | find /I /N \"outlook.exe\" || \"C:/Program Files (x86)/Microsoft Office/Office14/OUTLOOK.EXE\"")
+
+# Scan the contents of the two directory listings into R
 # Compare both directory listings and store
-# any differences are stored as 'diff'.  If diff has
-# values in it, write them to a new file and send 
+# any differences are stored as 'filesadded' or 'filesremoved'.  
+# If either of these has 
+# values in them, write them to a new file and send 
 # file via e-mail.
 # This doesn't error check the e-mail address
 dirlistnew <- scan(filenew, what="", sep="\n", quote = "\"")
